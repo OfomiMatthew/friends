@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Text, View, StyleSheet, Image, TextInput, Button } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
+import { useNavigation } from "@react-navigation/native";
 
 const user = {
   id: "u1",
@@ -12,11 +13,14 @@ const user = {
 const CreatePostScreen = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const navigation = useNavigation() 
+
 
   function onSubmit() {
     console.log(description);
     setDescription("");
     setImage("");
+    navigation.navigate("Feeds")
   }
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
